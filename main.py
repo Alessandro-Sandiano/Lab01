@@ -29,7 +29,7 @@ class Domanda:
 
 file = open ('domande.txt', 'r', encoding='utf-8')
 listaRighe = (file.readlines())
-#se il programma viene eseguito senza chiudere il file, stranamente non viene rilevato anclun errore
+#se il programma viene eseguito senza chiudere il file, stranamente non viene rilevato alcun errore
 file.close()
 
 contRighe = 0
