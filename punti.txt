@@ -1,4 +1,8 @@
 Paolo 4
+biondo 3
 Lucia 1
 Mario 1
+pluto 1
 Giuseppe 0
+pippo 0
+paperino 0
