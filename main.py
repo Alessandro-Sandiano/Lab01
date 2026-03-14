@@ -3,7 +3,7 @@ import random
 
 
 class Domanda:
-    def __init__(self, testo, livello, corretta, risposte):
+    def __init__(self, testo="", livello="", corretta="", risposte=[]):
         self.testo = testo
         self.livello = livello
         self.corretta = corretta
@@ -27,18 +27,16 @@ while corretta is True:
     domandaEstratta = listaDomandePerLivello[random.randint(0, len(listaDomandePerLivello)-1)]
     domandaEstratta.risposte.append(domandaEstratta.corretta)
     random.shuffle(domandaEstratta.risposte)
-    numRispostaCorretta=0
 
     print("\nLivello " + str(punteggio) + ") " + domandaEstratta.testo)
     for r in domandaEstratta.risposte:
         print(f"{domandaEstratta.risposte.index(r) + 1}. {r}")
-        if r==domandaEstratta.corretta: numRispostaCorretta=domandaEstratta.risposte.index(r)+1
-    print("\nInserisci la risposta: ")
+    print("\nInserisci la risposta: ", end="")
 
     while True:
         risposta = input()
         if risposta == "":
-            print("Non è stata inserita alcuna risposta. Riprovare: ")
+            print("Non è stata inserita alcuna risposta. Riprovare: ", end="")
             continue
         try:
             if int(risposta) in range(1, len(domandaEstratta.risposte)+1):
@@ -46,24 +44,23 @@ while corretta is True:
                     print("Risposta corretta!")
                     punteggio+=1
                 else:
-                    print(f"Risposta sbagliata! La risposta corretta era: {numRispostaCorretta}")
+                    print(f"Risposta sbagliata! La risposta corretta era: {domandaEstratta.risposte.index(domandaEstratta.corretta)+1}")
                     corretta = False
                 break
-            print("Il numero inserito non è associato ad alcuna risposta. Riprovare: ")
+            print("Il numero inserito non è associato ad alcuna risposta. Riprovare: ", end="")
         except:
             if risposta in domandaEstratta.risposte:
                 if risposta==domandaEstratta.corretta:
                     print("Risposta corretta!")
                     punteggio+=1
                 else:
-                    print(f"Risposta sbagliata! La risposta corretta era: {numRispostaCorretta}")
+                    print(f"Risposta sbagliata! La risposta corretta era: {domandaEstratta.risposte.index(domandaEstratta.corretta)+1}")
                     corretta = False
                 break
-            print("La risposta non è stata digitata correttamente. Riprovare: ")
+            print("La risposta non è stata digitata correttamente. Riprovare: ", end="")
 
 print("\nHai totalizzato " + str(punteggio) + " punti!")
-print("Inserisci il tuo nickname: ")
-nomeUtente = input()
+nomeUtente = input("Inserisci il tuo nickname: ")
 
 punteggi = [f"{nomeUtente} {punteggio}\n"]
 with open("punti.txt", encoding="utf-8") as file:
@@ -76,8 +73,10 @@ with open("punti.txt", encoding="utf-8") as file:
     '''
     punteggi.extend(file.readlines())
 
-#punteggi.sort(key=operator.itemgetter(0))
-#punteggi.sort(key=operator.itemgetter(-2), reverse=True)
+'''
+punteggi.sort(key=operator.itemgetter(0))
+punteggi.sort(key=operator.itemgetter(-2), reverse=True)
+'''
 punteggi.sort(key=lambda p: (-ord(p[-2]), p[0]))
 
 with open("punti.txt", "w", encoding="utf-8") as file:
