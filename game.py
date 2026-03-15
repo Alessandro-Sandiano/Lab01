@@ -1,5 +1,5 @@
 import random
-import Player
+import player
 
 class Question:
     def __init__(self, text="", level="", correct="", options=[]):
@@ -32,19 +32,19 @@ class Question:
         :return: Player object.
         """
         print("Benvenuto a Trivia Game! Digitare la risposta corretta o il numero ad essa corrispondente.\n")
-        player = Player.Player()
-        c = True
+        p = player.Player()
+        correct_answer = True
 
-        while c is True:
+        while correct_answer is True:
 
-            questions_by_level = [l for l in questions_list if int(l.level) == player.score]
+            questions_by_level = [l for l in questions_list if int(l.level) == p.score]
             if len(questions_by_level) == 0: break
 
             random_question = questions_by_level[random.randint(0, len(questions_by_level) - 1)]
             random_question.options.append(random_question.correct)
             random.shuffle(random_question.options)
 
-            print("\nLivello " + str(player.score) + ") " + random_question.text)
+            print("\nLivello " + str(p.score) + ") " + random_question.text)
             for r in random_question.options:
                 print(f"{random_question.options.index(r) + 1}. {r}")
             print("\nInserisci la risposta: ", end="")
@@ -58,28 +58,28 @@ class Question:
                     if int(answer) in range(1, len(random_question.options) + 1):
                         if random_question.options[int(answer) - 1] == random_question.correct:
                             print("Risposta corretta!")
-                            player.score += 1
+                            p.score += 1
                         else:
                             print(
                                 f"Risposta sbagliata! La risposta corretta era: {random_question.options.index(random_question.correct) + 1}")
-                            c = False
+                            correct_answer = False
                         break
                     print("Il numero inserito non è associato ad alcuna risposta. Riprovare: ", end="")
                 except:
                     if answer in random_question.options:
                         if answer == random_question.correct:
                             print("Risposta corretta!")
-                            player.score += 1
+                            p.score += 1
                         else:
                             print(
                                 f"Risposta sbagliata! La risposta corretta era: {random_question.options.index(random_question.correct) + 1}")
-                            c = False
+                            correct_answer = False
                         break
                     print("La risposta non è stata digitata correttamente. Riprovare: ", end="")
 
-        print("\nHai totalizzato " + str(player.score) + " punti!")
-        player.name = input("Inserisci il tuo nickname: ")
-        return player
+        print("\nHai totalizzato " + str(p.score) + " punti!")
+        p.name = input("Inserisci il tuo nickname: ")
+        return p
 
     @property
     def text(self):

@@ -1,4 +1,4 @@
-import Game
+import game
 
-player = Game.Question.play(Game.Question.load_questions("domande"))
-player.update_players("punti", player.sort_by_score(player.load_players("punti")))
+p = game.Question.play(game.Question.load_questions("domande"))
+p.update_players("punti", p.sort_by_score(p.load_players("punti")))
