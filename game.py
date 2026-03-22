@@ -65,7 +65,7 @@ class Question:
                             correct_answer = False
                         break
                     print("Il numero inserito non è associato ad alcuna risposta. Riprovare: ", end="")
-                except:
+                except ValueError:
                     if answer in random_question.options:
                         if answer == random_question.correct:
                             print("Risposta corretta!")
