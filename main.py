@@ -26,7 +26,7 @@ class Domanda:
 
 file = open ('domande.txt', 'r', encoding='utf-8')
 lista_righe = (file.readlines())
-#se il programma viene eseguito senza chiudere il file, stranamente non viene rilevato alcun errore
+# Se il programma viene eseguito senza chiudere il file, stranamente non viene rilevato alcun errore
 file.close()
 
 contatore_righe = 0
@@ -42,7 +42,7 @@ punteggio_corrente = 0
 sottolista = []
 risposta_corretta = True
 
-#while risposta_corretta == True:
+# while risposta_corretta == True:
 while risposta_corretta:
     for o in lista_domande:
         if o.livello == punteggio_corrente:
@@ -123,7 +123,5 @@ while counter < len(lista_giocatori)-1:
 file.write(f"{lista_giocatori[len(lista_giocatori)-1].nome} {lista_giocatori[len(lista_giocatori)-1].punteggio}")
 file.close()
 
-'''
-Gli oggetti risposta_utente e counter possono essere lasciati dentro il ciclo while ed essere
-ugualmente visibili dal resto del codice (cosa che in Java non sarebbe possibile)
-'''
+# Gli oggetti risposta_utente e counter possono essere lasciati dentro il ciclo while ed essere
+# ugualmente visibili dal resto del codice (cosa che in Java non sarebbe possibile)
