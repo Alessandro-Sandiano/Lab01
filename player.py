@@ -9,10 +9,10 @@ class Player:
         """
         Load the file of players and put them into a list with their own score, including the current player.
         :param file_name: name of the file to load.
-        :return: list of Player objects.
+        :return: string list with players' names and scores.
         """
         scores = [f"{self._name} {self._score}\n"]
-        with open(f"{file_name}.txt", encoding="utf-8") as file:
+        with open(f"{file_name}.txt", "r", encoding="utf-8") as file:
             # while True:
             #     scores.append(file.readline())
             #     if scores[len(scores)-1]=="":
@@ -25,8 +25,8 @@ class Player:
     def sort_by_score(scores):
         """
         Sort the players by their scores.
-        :param scores: list of Player objects.
-        :return: list of Player objects sorted by score.
+        :param scores: string list with players' names and scores.
+        :return: string list with players' names and scores sorted by score.
         """
 
         # scores.sort(key=operator.itemgetter(0))
@@ -39,7 +39,7 @@ class Player:
         """
         Write the updated players list to a file.
         :param file_name: name of the file to write.
-        :param scores: list of Player objects.
+        :param scores: string list with players' names and scores.
         :return: None
         """
         with open(f"{file_name}.txt", "w", encoding="utf-8") as file:
